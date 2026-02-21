@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-[#F8FAFC]">
 
 <head>
     <meta charset="UTF-8">
@@ -15,6 +15,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         * {
             font-family: "Geist", sans-serif;
@@ -23,7 +28,85 @@
 </head>
 
 <body>
-    <h1 class="text-2xl font-bold">Job Application Tracker</h1>
+
+    <!-- header section -->
+    <header class="w-[70%] mx-auto pt-[60px]">
+        <h1 class="text-3xl font-bold text-[#002C5C] mb-5">Job Application Tracker</h1>
+        <!-- nav card -->
+        <div class="card-container grid grid-cols-3 gap-4 pb-7">
+            <div class="p-5 bg-white border border-[#F1F2F4] rounded-lg ">
+                <p class="text-[#323B49] text-[14px] font-medium">Total</p>
+                <h3
+                    class="total font-bold text-2xl bg-linear-to-r from-[#002B70] to-[#0060FA] bg-clip-text text-transparent">
+                    0</h3>
+            </div>
+            <div class="p-5 bg-white border border-[#F1F2F4] rounded-lg ">
+                <p class="text-[#323B49] text-[14px] font-medium">Interview</p>
+                <h3 id="interview" class="font-bold text-2xl text-green-500">0</h3>
+            </div>
+            <div class="p-5 bg-white border border-[#F1F2F4] rounded-lg ">
+                <p class="text-[#323B49] text-[14px] font-medium">Rejected</p>
+                <h3 id="rejected" class="font-bold text-2xl text-red-500">0</h3>
+            </div>
+
+        </div>
+
+        <hr class="text-[#E6E7E9]">
+
+    </header>
+
+    <!-- Available Jobs + Toggle Bar-->
+    <main class="w-[70%] mx-auto mt-7">
+        <!-- available bar -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="font-semibold text-[#111827] text-[20px]">Available Jobs</h2>
+            <h3 class="text-[#323B49] font-medium"><span class="total">0</span> jobs</h3>
+        </div>
+
+        <!-- toggle buttons -->
+        <div class="flex gap-2 text-[12px] font-medium mb-4">
+            <button class="btn btn-primary w-20 py-2">All</button>
+            <button class="btn w-20 py-2">Interview</button>
+            <button class="btn w-20 py-2">Rejected</button>
+        </div>
+
+        <!-- filter section -->
+        <section id="filtered-section" class="hidden">
+
+        </section>
+
+        <!-- all cards -->
+        <section id="allCards" class="space-y-4">
+            <!-- card 1 -->
+            <div class="p-6 bg-white rounded-lg space-y-5">
+                <!-- part-1 -->
+                <div class="flex justify-between">
+                    <div>
+                        <h3 class="font-semibold text-lg text-[#002C5C]">Mobile First Corp</h3>
+                        <p class="text-[#64748B]">React Native Developer</p>
+                    </div>
+                    <button id="delete" class="btn rounded-full w-8 h-8 p-5"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+                <!-- part-2 -->
+                <p class="text-[#64748B] text-[14px]">Remote • Full-time • $130,000 - $175,000</p>
+                <!-- part-3 -->
+                <div>
+                    <button class="font-medium text-sm text-[#002C5C] rounded-sm bg-[#EEF4FF] p-2">NOT APPLIED</button>
+                    <p class="text-sm text-[#323B49] p-1">Build cross-platform mobile applications using React Native.
+                        Work on products used by millions of
+                        users worldwide.</p>
+                </div>
+                <!-- part-4 -->
+                <div class="space-x-2">
+                    <button class="btn btn-outline btn-success">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error">REJECTED</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
 </body>
 
 </html>
