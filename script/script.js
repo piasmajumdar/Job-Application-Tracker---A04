@@ -10,7 +10,7 @@ const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 const interviewCount = document.getElementById('interview');
 const rejectedCount = document.getElementById('rejected');
 
-const allCardsSection = document.getElementById('allCards');  //get the total cards no.
+let allCardsSection = document.getElementById('allCards');  //get the total cards no.
 let total = allCardsSection.children.length;
 
 
@@ -23,6 +23,8 @@ const filteredSection = document.getElementById('filtered-section');
 
 
 function setTotal() { // Set total job count
+    let allCardsSection = document.getElementById('allCards');  //get the total cards no.
+    let total = allCardsSection.children.length;
     const totalCount = document.querySelectorAll('.total'); // set the total count
     for (let item of totalCount) {
         item.innerText = total;
@@ -150,7 +152,7 @@ document.querySelector('main').addEventListener('click', function (event) {
         // if we're in rejected-filter-btn page,
         if (currentFilter == 'rejected-filter-btn') {
             renderRejected();
-
+            subTotalCount.innerText = rejectedList.length;
         }
 
         allJobCardDesign(allCardsSection);
@@ -194,14 +196,58 @@ document.querySelector('main').addEventListener('click', function (event) {
         console.log(currentFilter);
         if (currentFilter == 'interview-filter-btn') {
             renderInterview();
+            subTotalCount.innerText = interviewList.length;
         }
 
         allJobCardDesign(allCardsSection);
         allJobCardDesign(filteredSection);
     }
 
-    else if (event.target.classList.contains('job-delete')) {
-        alert('delete button clicked')
+    else if (event.target.classList.contains('job-delete') || event.target.classList.contains('job-delete-icon')) {
+        cardDiv = event.target.closest('.job-delete').parentNode.parentNode;
+        console.log(cardDiv);
+
+
+        // filter out from interview list & rejectedList
+        const deletedCardInfo = getData(cardDiv);
+        interviewList = interviewList.filter(item =>
+            !(item.CompanyName == deletedCardInfo.CompanyName &&
+                item.position == deletedCardInfo.position &&
+                item.location == deletedCardInfo.location));
+
+        rejectedList = rejectedList.filter(item =>
+            !(item.CompanyName == deletedCardInfo.CompanyName &&
+                item.position == deletedCardInfo.position &&
+                item.location == deletedCardInfo.location));
+
+
+        if (currentFilter == 'all-filter-btn') {
+            allCardsSection.removeChild(cardDiv);
+        }
+        if (currentFilter == 'interview-filter-btn') {
+            renderInterview();
+            const cardDeleteFromAllSection = Array.from(allCardsSection.children).find(item => item.querySelector('.job-companyName').innerText == deletedCardInfo.CompanyName);
+            // console.log(cardDeleteFromAllSection);
+            allCardsSection.removeChild(cardDeleteFromAllSection);
+            subTotalCount.innerText = interviewList.length;
+
+        }
+
+        else if (currentFilter == 'rejected-filter-btn') {
+            renderRejected();
+            const cardDeleteFromAllSection = Array.from(allCardsSection.children).find(item => item.querySelector('.job-companyName').innerText == deletedCardInfo.CompanyName);
+            // console.log(cardDeleteFromAllSection);
+            allCardsSection.removeChild(cardDeleteFromAllSection);
+            subTotalCount.innerText = rejectedList.length;
+
+        }
+        calculateCount();
+
+
+        allJobCardDesign(allCardsSection);
+        allJobCardDesign(filteredSection);
+
+
     }
 })
 
@@ -243,7 +289,7 @@ function renderInterview() {
                         <p class="job-position text-[#64748B]">${item.position}</p>
                     </div>
                     <button class="job-delete btn rounded-full w-8 h-8 p-5 hover:bg-red-200"><i
-                            class="fa-regular fa-trash-can job-delete"></i></button>
+                            class="fa-regular fa-trash-can job-delete-icon"></i></button>
                 </div>
                 <!-- part-2 -->
                 <p class="text-[#64748B] text-[14px]">
@@ -282,7 +328,7 @@ function renderRejected() {
                         <p class="job-position text-[#64748B]">${item.position}</p>
                     </div>
                     <button class="job-delete btn rounded-full w-8 h-8 p-5 hover:bg-red-200"><i
-                            class="fa-regular fa-trash-can job-delete"></i></button>
+                            class="fa-regular fa-trash-can job-delete-icon"></i></button>
                 </div>
                 <!-- part-2 -->
                 <p class="text-[#64748B] text-[14px]">
