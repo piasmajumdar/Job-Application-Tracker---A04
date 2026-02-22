@@ -109,7 +109,7 @@ function toggleOpt(id) {
             allCardsSection.classList.add('hidden');
             filteredSection.classList.remove('hidden');
         } else {
-            noJobsSection.classList.remove('hidden')
+            noJobsSection.classList.remove('hidden');
         }
     }
 }
@@ -153,6 +153,9 @@ document.querySelector('main').addEventListener('click', function (event) {
         if (currentFilter == 'rejected-filter-btn') {
             renderRejected();
             subTotalCount.innerText = rejectedList.length;
+            if (subTotalCount.innerText == '0') {
+                noJobsSection.classList.remove('hidden');
+            }
         }
 
         allJobCardDesign(allCardsSection);
@@ -197,6 +200,9 @@ document.querySelector('main').addEventListener('click', function (event) {
         if (currentFilter == 'interview-filter-btn') {
             renderInterview();
             subTotalCount.innerText = interviewList.length;
+            if (subTotalCount.innerText == '0') {
+                noJobsSection.classList.remove('hidden');
+            }
         }
 
         allJobCardDesign(allCardsSection);
@@ -223,6 +229,9 @@ document.querySelector('main').addEventListener('click', function (event) {
 
         if (currentFilter == 'all-filter-btn') {
             allCardsSection.removeChild(cardDiv);
+            if (allCardsSection.children.length == '0') {
+                noJobsSection.classList.remove('hidden');
+            }
         }
         if (currentFilter == 'interview-filter-btn') {
             renderInterview();
@@ -230,6 +239,9 @@ document.querySelector('main').addEventListener('click', function (event) {
             // console.log(cardDeleteFromAllSection);
             allCardsSection.removeChild(cardDeleteFromAllSection);
             subTotalCount.innerText = interviewList.length;
+            if (subTotalCount.innerText == '0') {
+                noJobsSection.classList.remove('hidden');
+            }
 
         }
 
@@ -239,6 +251,9 @@ document.querySelector('main').addEventListener('click', function (event) {
             // console.log(cardDeleteFromAllSection);
             allCardsSection.removeChild(cardDeleteFromAllSection);
             subTotalCount.innerText = rejectedList.length;
+            if (subTotalCount.innerText == '0') {
+                noJobsSection.classList.remove('hidden');
+            }
 
         }
         calculateCount();
