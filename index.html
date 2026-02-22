@@ -30,7 +30,7 @@
 <body>
 
     <!-- header section -->
-    <header class="w-[70%] mx-auto pt-[60px]">
+    <header class="w-[90%] sm:w-[70%] mx-auto pt-[60px]">
         <h1 class="text-3xl font-bold text-[#002C5C] mb-5">Job Application Tracker</h1>
         <!-- nav card -->
         <div class="card-container grid grid-cols-3 gap-4 pb-7">
@@ -56,18 +56,22 @@
     </header>
 
     <!-- Available Jobs + Toggle Bar-->
-    <main class="w-[70%] mx-auto mt-7">
+    <main class="w-[90%] w-[70%] mx-auto mt-7">
         <!-- available bar -->
         <div class="flex justify-between items-center mb-6">
             <h2 class="font-semibold text-[#111827] text-[20px]">Available Jobs</h2>
-            <h3 class="text-[#323B49] font-medium"><span class="total">0</span> jobs</h3>
+            <h3 class="text-[#323B49] font-medium"><span id="sub-total-Element" class="hidden"><span
+                        id="sub-total-count">0</span> of </span><span class="total">0</span> jobs</h3>
         </div>
 
         <!-- toggle buttons -->
         <div class="flex gap-2 text-[12px] font-medium mb-4">
-            <button class="btn btn-primary w-20 py-2">All</button>
-            <button class="btn w-20 py-2">Interview</button>
-            <button class="btn w-20 py-2">Rejected</button>
+            <button onclick="toggleOpt('all-filter-btn')" id="all-filter-btn"
+                class="btn btn-primary w-20 py-2">All</button>
+            <button onclick="toggleOpt('interview-filter-btn')" id="interview-filter-btn"
+                class="btn w-20 py-2">Interview</button>
+            <button onclick="toggleOpt('rejected-filter-btn')" id="rejected-filter-btn"
+                class="btn w-20 py-2">Rejected</button>
         </div>
 
         <!-- filter section -->
@@ -82,39 +86,47 @@
                 <!-- part-1 -->
                 <div class="flex justify-between">
                     <div>
-                        <h3 class="font-semibold text-lg text-[#002C5C]">Mobile First Corp</h3>
-                        <p class="text-[#64748B]">React Native Developer</p>
+                        <h3 class="job-companyName font-semibold text-lg text-[#002C5C]">Mobile First Corp</h3>
+                        <p class="job-position text-[#64748B]">React Native Developer</p>
                     </div>
-                    <button id="delete" class="btn rounded-full w-8 h-8 p-5"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="job-delete btn rounded-full w-8 h-8 p-5"><i
+                            class="fa-regular fa-trash-can"></i></button>
                 </div>
                 <!-- part-2 -->
-                <p class="text-[#64748B] text-[14px]">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="text-[#64748B] text-[14px]">
+                    <span class="job-location">Remote</span>
+                    •
+                    <span class="job-type">Full-time</span>
+                    •
+                    <span class="job-salary">$130,000 - $175,000</span>
+                </p>
                 <!-- part-3 -->
                 <div>
-                    <button class="font-medium text-sm text-[#002C5C] rounded-sm bg-[#EEF4FF] p-2">NOT APPLIED</button>
-                    <p class="text-sm text-[#323B49] p-1">Build cross-platform mobile applications using React Native.
+                    <button class="job-status font-medium text-sm text-[#002C5C] rounded-sm bg-[#EEF4FF] p-2">NOT APPLIED</button>
+                    <p class="job-description text-sm text-[#323B49] p-1">Build cross-platform mobile applications using React Native.
                         Work on products used by millions of
                         users worldwide.</p>
                 </div>
                 <!-- part-4 -->
                 <div class="space-x-2">
-                    <button class="btn btn-outline btn-success">INTERVIEW</button>
-                    <button class="btn btn-outline btn-error">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error">REJECTED</button>
                 </div>
             </div>
         </section>
 
         <!-- no jobs available -->
-         <section id="no-jobs" class="bg-white rounded-lg px-6 py-28 mt-4 place-items-center">
+        <section id="no-jobs" class="bg-white rounded-lg px-6 py-28 mt-4 place-items-center hidden">
             <img src="./jobs.png" alt="">
             <p class="font-semibold text-2xl text-[#002C5C]">No jobs available</p>
             <p class="text-[#64748B]">Check back soon for new job opportunities</p>
 
-         </section>
+        </section>
     </main>
 
 
 
+    <script src="./script/script.js"></script>
 </body>
 
 </html>
